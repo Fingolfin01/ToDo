@@ -16,7 +16,28 @@ export default class Storage extends MyNiceEvents {
   addDataSet(dataParameter) {
     this.data.push(dataParameter)
     this.emit("updated", this.data)
+    //update local storage
     this.save()
+    
+  }
+
+  removeDataSet(dataParameter) {
+    
+    //remove from this.data
+    //this.data.splice(dataParameter, 1)
+    this.data = this.data.filter((notes, index) => index != dataParameter
+    );
+    
+    //console.log(`OK REMOVE key -> ${dataParameter}`)
+    //console.log(this.data)
+    this.emit("updated", this.data)
+
+    this.save()
+    //We update the ui with the new this.data
+    //this.emit("updated", this.data)
+    //update local storage
+    //this.save()
+
   }
 
   save() {
@@ -49,5 +70,10 @@ noteStorage.on("addItem", note => {
 noteStorage.on("updated", notes => {
   renderNotes(notes)
 })
+
+noteStorage.on("removeItem", note => {
+  noteStorage.removeDataSet(note)
+}
+)
 
 noteStorage.initFinished()

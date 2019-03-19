@@ -3,7 +3,7 @@ import { noteStorage } from "./Storage"
 
 import { domElements } from "./helper"
 
-const { addNoteButton, addNoteInput } = domElements
+const { addNoteButton, addNoteInput, noteDiv } = domElements
 
 addNoteButton.addEventListener("click", () => {
   const note = addNoteInput.value
@@ -12,3 +12,18 @@ addNoteButton.addEventListener("click", () => {
     addNoteInput.value = ""
   }
 })
+
+addNoteButton.addEventListener("click", () => {
+  const note = addNoteInput.value
+  if (note) {
+    noteStorage.emit("addItem", note)
+    addNoteInput.value = ""
+  }
+})
+
+
+//noteContainer.addEventListener("click", () => {
+
+//})
+
+//noteStorage.emit("removeItem", xxx)

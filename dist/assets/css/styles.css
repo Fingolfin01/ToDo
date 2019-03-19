@@ -7025,5 +7025,8 @@ a.text-dark:hover, a.text-dark:focus {
   padding: 8px;
   background-color: #ffe96f; }
 
+body {
+  background-color: black; }
+
 
 /*# sourceMappingURL=styles.css.map*/
